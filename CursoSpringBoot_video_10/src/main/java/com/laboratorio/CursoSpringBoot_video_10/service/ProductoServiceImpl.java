@@ -1,7 +1,7 @@
-package com.laboratorio.CursoSpringBoot_video_09.service;
+package com.laboratorio.CursoSpringBoot_video_10.service;
 
-import com.laboratorio.CursoSpringBoot_video_09.model.Producto;
-import com.laboratorio.CursoSpringBoot_video_09.util.exception.InvalidDataException;
+import com.laboratorio.CursoSpringBoot_video_10.model.Producto;
+import com.laboratorio.CursoSpringBoot_video_10.util.exception.InvalidDataException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,21 +9,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoServiceImpl implements ProductoService{
+public class ProductoServiceImpl implements ProductoService {
 
     private List<Producto> productos = new ArrayList<>(
             List.of(
                     new Producto(1,"Mouse",25),
-                    new Producto(2,"Teclado",25),
+                    new Producto(2,"Teclado",22),
                     new Producto(3,"Monitor",120)
             )
     );
+
     @Override
     public Optional<Producto> findById(Integer id) {
         return productos.stream()
-                .filter(p-> p.getCodigo().equals(id))
+                .filter(p->p.getCodigo().equals(id))
                 .findFirst();
-
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ProductoServiceImpl implements ProductoService{
             throw new InvalidDataException("Precio Invalido");
         }
         Optional<Producto> productoAModificar = this.findById(id);
-        if(productoAModificar.isEmpty()){
+        if(productoAModificar.isEmpty()) {
             return Optional.empty();
         }
         productoAModificar.get().setNombre(producto.getNombre());
@@ -57,7 +57,7 @@ public class ProductoServiceImpl implements ProductoService{
     @Override
     public boolean delete(Integer id) {
         Optional<Producto> productoAEliminar = this.findById(id);
-        if(productoAEliminar.isEmpty()) {
+        if(productoAEliminar.isEmpty()){
             return false;
         }
         productos.remove(productoAEliminar.get());
