@@ -1,21 +1,19 @@
-package com.laboratorio.CursoSpringBoot_video_12.service;
+package com.laboratorio.CursoSpringBoot_video_13.service;
 
-import com.laboratorio.CursoSpringBoot_video_12.model.Producto;
-import com.laboratorio.CursoSpringBoot_video_12.repository.ProductoRepository;
-import com.laboratorio.CursoSpringBoot_video_12.util.exception.InvalidDataException;
+import com.laboratorio.CursoSpringBoot_video_13.model.Producto;
+import com.laboratorio.CursoSpringBoot_video_13.repository.ProductoRepository;
+import com.laboratorio.CursoSpringBoot_video_13.util.exception.InvalidDataException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ProductoServiceImpl implements ProductoService{
+public class ProductoServiceImpl implements ProductoService {
 
     private final ProductoRepository productoRepository;
-
 
     @Override
     public Optional<Producto> findById(Integer id) {
@@ -32,7 +30,6 @@ public class ProductoServiceImpl implements ProductoService{
         if(producto.getPrecio()>3000){
             throw new InvalidDataException("Precio Invalido");
         }
-
         return this.productoRepository.save(producto);
     }
 
@@ -52,12 +49,11 @@ public class ProductoServiceImpl implements ProductoService{
 
     @Override
     public boolean delete(Integer id) {
-        Optional<Producto> productoAEliminar= this.findById(id);
+        Optional<Producto> productoAEliminar = this.findById(id);
         if(productoAEliminar.isEmpty()){
             return false;
         }
         this.productoRepository.deleteById(id);
         return true;
-
     }
 }
