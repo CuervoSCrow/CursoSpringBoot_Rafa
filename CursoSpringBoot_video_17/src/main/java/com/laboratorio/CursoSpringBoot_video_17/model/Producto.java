@@ -1,4 +1,4 @@
-package com.laboratorio.CursoSpringBoot_video_16.model;
+package com.laboratorio.CursoSpringBoot_video_17.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -12,9 +12,8 @@ import java.time.LocalDate;
 @Entity
 @Table(name="productos")
 @Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 public class Producto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer codigo;
@@ -22,23 +21,32 @@ public class Producto {
     @Column(name="categoria_id",nullable = false)
     private Integer categoriaId;
 
-    @Column(length = 100,nullable = false,unique = true)
+    @Column(nullable = false,length=100,unique = true)
     private String nombre;
 
     @Column(nullable = false)
     private Double precio;
 
     @Column(name="fecha_ingreso",
-            insertable = false,
-            updatable = false)
-    private LocalDate fechaIngreso;
+                 insertable=false,
+                 updatable = false)
+    LocalDate fechaIngreso;
 
-    @ManyToOne(fetch= FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="categoria_id",
-                insertable = false,
-                updatable = false)
+                    insertable=false,
+                    updatable = false)
     @JsonBackReference
     private Categoria categoria;
 
-
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "codigo=" + codigo +
+                ", categoriaId=" + categoriaId +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", fechaIngreso=" + fechaIngreso +
+                '}';
+    }
 }

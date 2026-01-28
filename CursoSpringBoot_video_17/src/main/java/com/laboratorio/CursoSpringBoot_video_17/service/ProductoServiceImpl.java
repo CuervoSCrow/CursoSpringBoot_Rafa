@@ -1,8 +1,8 @@
-package com.laboratorio.CursoSpringBoot_video_16.service;
+package com.laboratorio.CursoSpringBoot_video_17.service;
 
-import com.laboratorio.CursoSpringBoot_video_16.model.Producto;
-import com.laboratorio.CursoSpringBoot_video_16.repository.ProductoRepository;
-import com.laboratorio.CursoSpringBoot_video_16.util.exception.InvalidDataException;
+import com.laboratorio.CursoSpringBoot_video_17.model.Producto;
+import com.laboratorio.CursoSpringBoot_video_17.repository.ProductoRepository;
+import com.laboratorio.CursoSpringBoot_video_17.util.exception.InvalidDataException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ProductoServiceImpl implements ProductoService{
-
     private final ProductoRepository productoRepository;
 
     @Override
@@ -54,7 +53,7 @@ public class ProductoServiceImpl implements ProductoService{
         if(productoAEliminar.isEmpty()){
             return false;
         }
-        this.productoRepository.deleteById  (id);
+        this.productoRepository.deleteById(id);
         return true;
     }
 }
